@@ -46,6 +46,35 @@ const uploadDocument = async (userId, projectId, file) => {
   return data;
 };
 
+const getDocumentById = async (userId, documentId) => {
+  const { data, error } = await supabase
+    .from("documents")
+    .select("*")
+    .eq("id", documentId)
+    .eq("user_id", userId)
+    .single();
+
+  if (error || !data) {
+    throw new Error("Document not found");
+  }
+
+  return data;
+};
+
+const downloadDocument = async (storagePath) => {
+  const { data, error } = await supabase.storage
+    .from("tender-documents")
+    .download(storagePath);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+};
+
 module.exports = {
-  uploadDocument
+  uploadDocument,
+  getDocumentById,
+  downloadDocument
 };

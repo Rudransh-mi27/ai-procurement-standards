@@ -26,5 +26,29 @@ router.post(
   upload.single("file"),
   documentController.uploadDocument
 );
+router.post(
+  "/:id/analyze",
+  requireAuth,
+  documentController.analyze
+);
+router.get(
+  "/:id",
+  requireAuth,
+  documentController.getDocument
+);
+
+// router.get(
+//   "/:id/download-test",
+//   requireAuth,
+//   documentController.testDownload
+// );
+// router.get(
+//   "/:id/extract-text",
+//   requireAuth,
+//   documentController.extractText
+// );
+
+
+
 
 module.exports = router;
