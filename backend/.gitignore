@@ -1,2 +1,7 @@
 node_modules
 .env
+ai_embedding_test.js
+test-related-standards.js
+test-standard-recommendation.js
+test-standard-search.js
+generate-standard-embeddings.js
